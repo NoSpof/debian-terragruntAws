@@ -9,9 +9,7 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: build docker Image
@@ -19,7 +17,7 @@ jobs:
     - name: docker tag
       run: docker tag  nospof/terragrunt:${{ github.sha }} nospof/terragrunt:latest
     - name: docker login
-      run : docker login -u ${{ .secrets.dockerUsername }} -p ${{ .secrets.dockerPassword }}
+      run : docker login -u ${{ secrets.dockerUsername }} -p ${{ secrets.dockerPassword }}
     - name: docker push
       run: docker push nospof/terragrunt:${{ github.sha }}
     - name: docker push latest
